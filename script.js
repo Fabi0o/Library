@@ -1,4 +1,11 @@
-let myLibrary = [];
+let myLibrary = [
+  {
+    title: "Hobbit",
+    author: "J.R.R. Tolkien",
+    pages: 256,
+    read: "Read",
+  },
+];
 let library = document.querySelector(".library");
 
 function Book(title, author, pages, read) {
@@ -14,7 +21,7 @@ function addBookToLibrary(book) {
 function displayBooks() {
   myLibrary.forEach((book) => {
     library.innerHTML += `<div class="book">
-        <div class="title, bookItem">${book.title}</div>
+        <div class="title, bookItem">"${book.title}"</div>
         <div class="author, bookItem">${book.author}</div>
         <div class="pages, bookItem">${book.pages}</div>
         <button class="read, bookItem">${book.read}</button>
@@ -22,3 +29,4 @@ function displayBooks() {
       </div>`;
   });
 }
+displayBooks();
