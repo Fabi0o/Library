@@ -1,0 +1,26 @@
+body {
+  margin: 0px 150px;
+}
+.library {
+  border-top: 1px solid black;
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-top: 20px;
+}
+.book {
+  height: 300px;
+  width: 200px;
+  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+}
+.bookItem {
+  flex: 1;
+}
+.book div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
