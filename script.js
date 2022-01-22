@@ -1,3 +1,4 @@
+//Stores all books
 let myLibrary = [
   {
     title: "Hobbit",
@@ -7,14 +8,14 @@ let myLibrary = [
   },
 ];
 const library = document.querySelector(".library");
-
+//creates books
 function Book(title, author, pages, read) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.read = read;
 }
-
+//Adds book object to the myLibrary array and display every book on page
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
@@ -30,7 +31,7 @@ function displayBooks() {
   });
 }
 displayBooks();
-
+//takes value from the form and creates books accordingly
 const form = document.querySelector("form");
 const btn = document.querySelector(".btn");
 
@@ -38,9 +39,13 @@ btn.addEventListener("click", function (e) {
   const title = document.querySelector(".title").value;
   const author = document.querySelector(".author").value;
   const pages = document.querySelector(".pages").value;
-  const isRead = document.querySelector(".isRead").value;
+  const isRead = document.querySelector(".isRead").checked;
+  let read = "Read";
   if (title != "" && author != "" && pages != 0) {
-    let newBook = new Book(title, author, pages, isRead);
+    if (!isRead) {
+      read = "Not Read";
+    }
+    let newBook = new Book(title, author, pages, read);
     library.innerHTML = "";
     addBookToLibrary(newBook);
     displayBooks();
