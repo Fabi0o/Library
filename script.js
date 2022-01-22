@@ -6,7 +6,7 @@ let myLibrary = [
     read: "Read",
   },
 ];
-let library = document.querySelector(".library");
+const library = document.querySelector(".library");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -30,3 +30,19 @@ function displayBooks() {
   });
 }
 displayBooks();
+
+const form = document.querySelector("form");
+const btn = document.querySelector(".btn");
+
+btn.addEventListener("click", function (e) {
+  const title = document.querySelector(".title").value;
+  const author = document.querySelector(".author").value;
+  const pages = document.querySelector(".pages").value;
+  const isRead = document.querySelector(".isRead").value;
+  if (title != "" && author != "" && pages != 0) {
+    let newBook = new Book(title, author, pages, isRead);
+    library.innerHTML = "";
+    addBookToLibrary(newBook);
+    displayBooks();
+  } else alert("Every form input have to be filled!");
+});
