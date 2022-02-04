@@ -1,25 +1,23 @@
 //Stores all books
-let myLibrary = [
-  {
-    title: "Hobbit",
-    author: "J.R.R. Tolkien",
-    pages: 256,
-    read: "Read",
-  },
-];
+let myLibrary = [];
 const library = document.querySelector(".library");
 //creates books
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+  //Adds book object to the myLibrary array
+  addToLibrary() {
+    myLibrary.push(this);
+  }
 }
-//Adds book object to the myLibrary array and display every book on page
-function addBookToLibrary(book) {
-  myLibrary.push(book);
-}
-function displayBooks() {
+let firstBook = new Book("Hobbit", "J.R.R. Tolkien", 256, "Read");
+firstBook.addToLibrary();
+//Displays every book on page
+(function displayBooks() {
   myLibrary.forEach((book) => {
     library.innerHTML += `<div class="book" data-index-number = ${myLibrary.indexOf(
       book
@@ -33,25 +31,23 @@ function displayBooks() {
   });
   readButtonFunctionality();
   ramoveButtonFunctionality();
-}
-displayBooks();
+})();
 //takes value from the form and creates books accordingly
-const form = document.querySelector("form");
 const btn = document.querySelector(".btn");
 
-btn.addEventListener("click", function (e) {
+btn.addEventListener("click", (e) => {
   const title = document.querySelector(".title").value;
   const author = document.querySelector(".author").value;
   const pages = document.querySelector(".pages").value;
   const isRead = document.querySelector(".isRead").checked;
   let read = "Read";
-  if (title != "" && author != "" && pages != 0) {
+  if (title && author && pages) {
     if (!isRead) {
       read = "Not read";
     }
     let newBook = new Book(title, author, pages, read);
     library.innerHTML = "";
-    addBookToLibrary(newBook);
+    newBook.addToLibrary();
     displayBooks();
   } else alert("Every form input have to be filled!");
 });
